@@ -21,13 +21,9 @@ module.exports = {
             var cmd = params[0];
             var parameter = [];
 
-            if(params.length == 2){
-                parameter = [params[1]];
+            for (var i = 1; i < params.length; i++) {
+                parameter.push(params[i]);
             }
-            else if(params.length > 2) {
-                parameter = params.shift();
-            }
-
 
             var run = new execute(cmd, parameter, function (text) { actionlogger.info(text); })
         }
