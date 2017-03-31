@@ -3,7 +3,9 @@
   "repohooks": [
     //example hook that will trigger on a push
     {
-      "hookevents": [ "push" ]
+      "repository_id": "YOUR_RESPOSITORY_ID", //this command will only be executed for this repository
+      "action": "command", //the action that will be executed
+      "action_params": ["c:\\Utility\\RunBatInFolder.exe", "c:\\server\\online-recipe-manager","pull.bat"] // the parameters for the "command" action
     }
   ],
   "otherhooks": []
