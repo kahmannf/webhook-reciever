@@ -19,7 +19,7 @@ app.post('/recieve', (req, res) => {
     if (config.log_incoming == 1) {
         consolelogger.log('Incomming POST: ' + (req.header('X-GitHub-Event')));
         if(req.body && req.body.repository){
-            filelogger.info('RepoConnect: ID: ' + req.body.repository.id + '; FullName: ' + req.body.repository.fullname);
+            filelogger.info('RepoConnect: ID: ' + req.body.repository.id + '; FullName: ' + req.body.repository.full_name);
         }
     }
 
