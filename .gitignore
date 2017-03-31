@@ -18,5 +18,9 @@ public/dist/*.css
 node_modules
 jspm_packages
 
-#VS CODE
+#Visual studio
+.vs
 .vscode
+
+#hooks
+hooks.json

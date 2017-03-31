@@ -1,0 +1,10 @@
+//all hooks must be defined here. name the file 'hooks.json' and place it inside the root directory;
+{
+  "repohooks": [
+    //example hook that will trigger on a push
+    {
+      "hookevents": [ "push" ]
+    }
+  ],
+  "otherhooks": []
+}

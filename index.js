@@ -2,14 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const config = require('./config');
-const hookhandler = require('./hookhandler');
+const hookhandler = require('./hookhandlers');
+
+const loggerapi = require('logger');
 
 const app = express();
-const logger = require('logger').createLogger('incomming.log');
-
-logger.format = function (level, date, message) {
-    return date.getTime().toString() + ': ' + level + ' '+ message;
-};
+const consolelogger = loggerapi.createLogger();
+const filelogger = loggerapi.createLogger('logs/incomming.log');
 
 app.use(bodyParser.json());
 
@@ -18,13 +17,22 @@ app.use(express.static('./public'));
 
 app.post('/recieve', (req, res) => {
     if (config.log_incoming == 1) {
-        logger.info(req.rawHeaders);
-        logger.info(req.body);
+        consolelogger.log('Incomming POST: ' + (req.header('X-GitHub-Event')));
+        if(req.body && req.body.repository){
+            filelogger.info('RepoConnect: ID: ' + req.body.repository.id + '; FullName: ' + req.body.repository.fullname);
+        }
     }
-    else {
+
+    hookhandler.handle(req, (err) =>
+    {
+        if (err) {
+            filelogger.error(err);
+            filelogger.error(req.rawHeaders);
+            filelogger.error(req.body);
+        }
         res.status(200).send();
-        return;
-    }
+    })
+    return;
 });
 
 app.listen(config.server_port, () => {
