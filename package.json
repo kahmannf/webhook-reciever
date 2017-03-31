@@ -1,0 +1,25 @@
+{
+  "name": "webhook-reciever",
+  "version": "0.0.1",
+  "description": "A small programm that will recieve POST-request (mainly GitHub-Hookevents) and will trigger certain actions on the server",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kahmannf/webhook-reciever.git"
+  },
+  "author": "Felix Kahmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kahmannf/webhook-reciever/issues"
+  },
+  "homepage": "https://github.com/kahmannf/webhook-reciever#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "logger": "0.0.1"
+  }
+}
